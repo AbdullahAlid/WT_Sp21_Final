@@ -1,10 +1,12 @@
 <?php
 	require_once "db_config.php";
+	session_start();
 	$uname="";
 	$pass="";
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$uname=$_POST["username"];
 		$pass=$_POST["password"];
+		$_SESSION["user"]=$uname;
 		$query="select * from Admin where Username='$uname' and password='$pass'";
 		$result=get($query);
 		if(count($result)==1){
